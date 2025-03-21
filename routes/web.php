@@ -28,8 +28,10 @@ Route::middleware([
     Route::get('/settings/profile', Profile::class)->name('profiles');
     Route::get('/categories', CategoriesList::class)->name('categories.index');
     Route::get('/buy', function (Request $request) {
-        $checkout = $request->user()->checkout(['pri_tshirt', 'pri_socks' => 5]);
-        return view('buy', ['checkout' => $checkout]);
-    })->name('buy');
+        $checkout = $request->user()->checkout([
+            'pri_01jpwmd9f611rrnw1xj5acp10b' => 1,
+        ]);
+        return redirect($checkout->getReturnUrl());
+    });
 
 });
